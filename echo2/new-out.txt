@@ -1,0 +1,10 @@
+./echo: ./echo: Bonjour, monde!
+./echo: ./echo: Au revoir, monde!
+./echo: Done!
+./echo: ./echo: Hello, world!
+./echo: ./echo: Good-bye, world!
+./echo: Done!
+Done!
+./echo: Bonjour, monde!
+./echo: Au revoir, monde!
+Done!
