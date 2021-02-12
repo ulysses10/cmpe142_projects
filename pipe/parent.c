@@ -8,9 +8,9 @@ void parent(int fd[])
 
     // Close the unused READ end of the pipe.
     close(fd[READ_END]);
-
     for (;;)
     {
+
         if (fgets(buffer, sizeof(buffer), stdin) <= 0) break;
 
         // Remove the '\n' at the end.
