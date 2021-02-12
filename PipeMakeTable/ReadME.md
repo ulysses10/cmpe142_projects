@@ -1,4 +1,4 @@
-#   To run PipeMakTable.cpp
+#   To run PipeMakeTable.cpp
 Build first
 
 ```bash
