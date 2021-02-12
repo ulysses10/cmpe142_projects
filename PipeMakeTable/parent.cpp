@@ -2,9 +2,9 @@
 
 void parent(int fd[])
 {
-    string prefix = "<tr>\n\t<td>";
+    string prefix = "\t<tr>\n\t\t<td>";
     string divider = "</td><td>";
-    string postfix = "</td>\n</tr>\n";
+    string postfix = "</td>\n\t</tr>\n";
     
     // Close the unused READ end of the pipe.
     close(fd[READ_END]);
