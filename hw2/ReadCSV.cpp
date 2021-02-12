@@ -5,23 +5,22 @@ using namespace std;
 int main()
 {
 
-    //string text;
-    for(string text; getline(cin,text);){
-    cin >> text;
-    int n=text.length();
-    cout << "<tr>\n\t<td>";
-    for(int i=0; i<n; i++)
+    for(string text; getline(cin,text);)
     {
-        while(text[i]==',')
+        //cin >> text;
+        int n=text.length();
+        cout << "<tr>\n\t<td>";
+        for(int i=0; i<n; i++)
         {
-            i++;
-            cout << "</td><td>";
+            while(text[i]==',')
+            {
+                i++;
+                cout << "</td><td>";
+            }
+            cout << text[i];
         }
-        cout << text[i];
+        cout << "</td>\n</tr>\n";    
     }
-    cout << "</td>\n</tr>\n";    
-    }
-    //cin >> text;
 
     return 0;
 }
