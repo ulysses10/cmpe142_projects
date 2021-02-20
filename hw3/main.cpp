@@ -14,10 +14,10 @@ int main(void)
         fcfs();
     }
     // -- Run SJF algorithm
-    // sjf(schedule);
+    // sjf();
 
     // -- Run SRT algorithm
-    // srt(schedule);
+    // srt();
 
 
     return 0;
