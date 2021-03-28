@@ -4,11 +4,11 @@ int main()
 {
     // Generate a string of 100 page references
     generate_reference_string();
-    swap_count = 0;
-    hit_count = 0;
-    int a =lfu; // set a to algorithm to be tested; look at enum in globals
-    // for (int a = 0; a < 6; a++)
-    // {
+    // int a =lru; // set a to algorithm to be tested; look at enum in globals
+    for (int a = 0; a < 6; a++)
+    {
+        swap_count = 0;
+        hit_count = 0;
         // setup physical memory with "empty" frames
         for (int i = 0; i < 3; i++)
             physical[i] = -1;
@@ -20,6 +20,7 @@ int main()
         {
             int page_ref = reference_string[i];
             frequency[page_ref]++;
+
             cout << setw(4) << left << page_ref << " ";
             if (physical_empty_frames() && not_in_physical(page_ref))
             {
@@ -57,7 +58,14 @@ int main()
                     break;
                 case mfu:
                     victim = victim_mfu(page_ref);
+                    break;
+                case lru:
+                    victim = victim_lru(page_ref);
+                    break;
                 }
+
+                // reset last used of ref page to zero
+                last_used[victim] = 0;
 
                 // replace victim with page_ref
                 if (replaced(victim, page_ref))
@@ -74,15 +82,47 @@ int main()
                     second_chance(page_ref);
                 }
 
+                // reset last used of ref page to zero
+                last_used[page_ref] = 0;
+
                 // no action: reference page is in physical memory
                 print_frames();
                 hit_count++;
             }
+            for (int j = 0; j < x; j++)
+            {
+                last_used[queue[j]] += 1;
+            }
             cout << "\n";
+        }
+        switch (a)
+        {
+        case fifo:
+            cout << "Stats for First In First Out: \n";
+            break;
+        case sc:
+            cout << "Stats for Second Chance: \n";
+            break;
+        case rndm:
+            cout << "Stats for Random: \n";
+            break;
+        case opt:
+            cout << "Stats for Optimal: \n";
+            break;
+        case lfu:
+            cout << "Stats for Least Frequently Used: \n";
+            break;
+        case mfu:
+            cout << "Stats for Most Frequently Used: \n";
+            break;
+        case lru:
+            cout << "Stats for Least Recently Used: \n";
+            break;
         }
         cout << "Total swaps: " << swap_count << "\n";
         cout << "Hit ratio: " << hit_count << "%\n";
-    //}
+        cout << "****************************************************\n\n";
+    }
 
     return 0;
 }

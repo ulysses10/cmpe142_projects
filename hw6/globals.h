@@ -8,12 +8,12 @@ using namespace std;
 enum algorithm
 {
     fifo,
-    sc,
     lru,
     lfu,
     mfu,
     rndm,
-    opt
+    opt,
+    sc
 };
 
 const int MAX_REF = 100;
@@ -21,6 +21,7 @@ int reference_string[MAX_REF];
 int physical[3];
 int process[8] = {0, 1, 2, 3, 4, 5, 6, 7};
 int frequency[8]={0};
+int last_used[8]={0};
 int queue[3];
 int swap_count;
 int hit_count;
@@ -110,6 +111,23 @@ int victim_optimal(int page_ref, int current_index){
     }
     victim = queue[max];
     queue[max] = page_ref;
+    
+    return victim;
+}
+
+int victim_lru(int page_ref){
+    int victim = queue[0];
+    int index = 0;
+    // find max last used of items in queue
+    if(last_used[victim]<last_used[queue[1]]){
+        victim=queue[1];
+        index = 1;
+    }
+    if(last_used[victim]<last_used[queue[2]]){
+        victim=queue[2];
+        index = 2;
+    }
+    queue[index]=page_ref;
     
     return victim;
 }
@@ -204,6 +222,13 @@ void print_frames()
 void print_action(int victim, int page_ref)
 {
     cout << right << setw(4) << victim << " evicted, " << page_ref << " entered";
+}
+
+void print_lastused()
+{
+    for(int i =0; i<8; i++){
+    cout << last_used[i] << " ";
+    }
 }
 
 #endif
