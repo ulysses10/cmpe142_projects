@@ -1,0 +1,104 @@
+hw6_output
+
+Ref  Frames   Action
+5    5 
+1    5 1 
+6    5 1 6 
+3    3 1 6    5 evicted, 3 entered
+5    3 5 6    1 evicted, 5 entered
+4    3 5 4    6 evicted, 4 entered
+3    3 5 4 
+7    7 5 4    3 evicted, 7 entered
+4    7 5 4 
+2    7 2 4    5 evicted, 2 entered
+0    7 2 0    4 evicted, 0 entered
+0    7 2 0 
+4    4 2 0    7 evicted, 4 entered
+5    4 5 0    2 evicted, 5 entered
+2    4 5 2    0 evicted, 2 entered
+4    4 5 2 
+3    3 5 2    4 evicted, 3 entered
+2    3 5 2 
+3    3 5 2 
+1    3 1 2    5 evicted, 1 entered
+5    3 1 5    2 evicted, 5 entered
+6    6 1 5    3 evicted, 6 entered
+1    6 1 5 
+3    6 3 5    1 evicted, 3 entered
+0    6 3 0    5 evicted, 0 entered
+3    6 3 0 
+2    2 3 0    6 evicted, 2 entered
+7    2 7 0    3 evicted, 7 entered
+4    2 7 4    0 evicted, 4 entered
+6    6 7 4    2 evicted, 6 entered
+2    6 2 4    7 evicted, 2 entered
+7    6 2 7    4 evicted, 7 entered
+2    6 2 7 
+3    3 2 7    6 evicted, 3 entered
+2    3 2 7 
+7    3 2 7 
+4    3 4 7    2 evicted, 4 entered
+2    3 4 2    7 evicted, 2 entered
+5    5 4 2    3 evicted, 5 entered
+2    5 4 2 
+4    5 4 2 
+5    5 4 2 
+3    5 3 2    4 evicted, 3 entered
+0    5 3 0    2 evicted, 0 entered
+3    5 3 0 
+3    5 3 0 
+3    5 3 0 
+7    7 3 0    5 evicted, 7 entered
+2    7 2 0    3 evicted, 2 entered
+7    7 2 0 
+0    7 2 0 
+2    7 2 0 
+7    7 2 0 
+5    7 2 5    0 evicted, 5 entered
+3    3 2 5    7 evicted, 3 entered
+3    3 2 5 
+3    3 2 5 
+1    3 1 5    2 evicted, 1 entered
+4    3 1 4    5 evicted, 4 entered
+6    6 1 4    3 evicted, 6 entered
+2    6 2 4    1 evicted, 2 entered
+0    6 2 0    4 evicted, 0 entered
+6    6 2 0 
+6    6 2 0 
+3    3 2 0    6 evicted, 3 entered
+3    3 2 0 
+7    3 7 0    2 evicted, 7 entered
+2    3 7 2    0 evicted, 2 entered
+6    6 7 2    3 evicted, 6 entered
+6    6 7 2 
+2    6 7 2 
+0    6 0 2    7 evicted, 0 entered
+4    6 0 4    2 evicted, 4 entered
+2    2 0 4    6 evicted, 2 entered
+5    2 5 4    0 evicted, 5 entered
+5    2 5 4 
+0    2 5 0    4 evicted, 0 entered
+3    3 5 0    2 evicted, 3 entered
+0    3 5 0 
+2    3 2 0    5 evicted, 2 entered
+5    3 2 5    0 evicted, 5 entered
+0    0 2 5    3 evicted, 0 entered
+2    0 2 5 
+6    0 6 5    2 evicted, 6 entered
+3    0 6 3    5 evicted, 3 entered
+7    7 6 3    0 evicted, 7 entered
+7    7 6 3 
+5    7 5 3    6 evicted, 5 entered
+5    7 5 3 
+1    7 5 1    3 evicted, 1 entered
+6    6 5 1    7 evicted, 6 entered
+1    6 5 1 
+7    6 7 1    5 evicted, 7 entered
+2    6 7 2    1 evicted, 2 entered
+3    3 7 2    6 evicted, 3 entered
+3    3 7 2 
+6    3 6 2    7 evicted, 6 entered
+2    3 6 2 
+5    3 6 5    2 evicted, 5 entered
+1    1 6 5    3 evicted, 1 entered
+Total swaps: 61
