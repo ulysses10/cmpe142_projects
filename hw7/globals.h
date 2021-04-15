@@ -24,11 +24,13 @@ const int ordered_queue[10] = {256, 513, 1175, 1401, 1680, 2055, 2304, 2700, 369
 // Useful items to use in scheduling algorithms
 const int queue[10] = {2055, 1175, 2304, 2700, 513, 1680, 256, 1401, 4922, 3692};
 const int width[10] = {57, 27, 77, 87, 17, 47, 7, 37, 107, 97};
+const int edges[2] ={0, 4999};
+const int edge_width[2] ={1, 117};
 const int drive_head = 2255;
 const int MAX_CYLINDER = 4999;
 const int MIN_CYLINDER = 0;
-int schedule[10];      // This array can be used to hold the order of the requests based on the algorithm
-int ordered_width[10]; // To hold the new width order used in printing
+int schedule[12];      // This array can be used to hold the order of the requests based on the algorithm
+int ordered_width[12]; // To hold the new width order used in printing
 
 void print_graph(int algorithm, int moves)
 {
@@ -62,10 +64,11 @@ void fcfs_scheduling()
     {
         schedule[i] = queue[i];
         ordered_width[i] = width[i];
-        if (queue[i] > previous_position)
-            total_movement = total_movement + (queue[i] - previous_position);
-        else
-            total_movement = total_movement + (previous_position - queue[i]);
+        total_movement = total_movement + abs(previous_position-queue[i]);
+        // if (queue[i] > previous_position)
+        //     total_movement = total_movement + (queue[i] - previous_position);
+        // else
+        //     total_movement = total_movement + (previous_position - queue[i]);
         previous_position = queue[i];
     }
     print_graph(fcfs, total_movement);
@@ -122,4 +125,7 @@ void scan_scheduling(){
     }
 }
 
+void look_scheduling(){
+
+}
 #endif
