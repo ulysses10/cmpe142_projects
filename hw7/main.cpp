@@ -4,5 +4,5 @@ int main()
 {
     fcfs_scheduling();
     sstf_scheduling();
-    //look_scheduling();
+    // look_scheduling();
 }

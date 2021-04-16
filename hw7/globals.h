@@ -24,19 +24,18 @@ const int ordered_queue[10] = {256, 513, 1175, 1401, 1680, 2055, 2304, 2700, 369
 // Useful items to use in scheduling algorithms
 const int queue[10] = {2055, 1175, 2304, 2700, 513, 1680, 256, 1401, 4922, 3692};
 const int width[10] = {57, 27, 77, 87, 17, 47, 7, 37, 107, 97};
-const int edges[2] ={0, 4999};
-const int edge_width[2] ={1, 117};
+// const int edges[2] = {0, 4999};
+// const int edge_width[2] = {1, 117};
 const int drive_head = 2255;
 const int MAX_CYLINDER = 4999;
 const int MIN_CYLINDER = 0;
-int schedule[12];      // This array can be used to hold the order of the requests based on the algorithm
-int ordered_width[12]; // To hold the new width order used in printing
 
-void print_graph(int algorithm, int moves)
+void print_graph(int algorithm, int moves, int length, int schedule[], int ordered_width[])
 {
     cout << "\n"
          << alg[algorithm] << ":\n\n";
     cout << "0";
+
     for (int i = 0; i < 10; i++)
     {
         cout << setfill('.') << setw(10);
@@ -48,7 +47,7 @@ void print_graph(int algorithm, int moves)
     }
     cout << setfill(' ') << setw(73) << "*2255\n\n";
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < length; i++)
     {
         cout << setw(ordered_width[i]) << "*" << schedule[i] << "\n\n";
     }
@@ -58,24 +57,25 @@ void print_graph(int algorithm, int moves)
 
 void fcfs_scheduling()
 {
+    int length = 10;
+    int schedule[length];
+    int ordered_width[length];
     int total_movement = 0;
     int previous_position = drive_head;
     for (int i = 0; i < 10; i++)
     {
         schedule[i] = queue[i];
         ordered_width[i] = width[i];
-        total_movement = total_movement + abs(previous_position-queue[i]);
-        // if (queue[i] > previous_position)
-        //     total_movement = total_movement + (queue[i] - previous_position);
-        // else
-        //     total_movement = total_movement + (previous_position - queue[i]);
-        previous_position = queue[i];
+        total_movement = total_movement + abs(previous_position - queue[i]);
     }
-    print_graph(fcfs, total_movement);
+    print_graph(fcfs, total_movement, length, schedule, ordered_width);
 }
 
 void sstf_scheduling()
 {
+    int length = 10;
+    int schedule[length];
+    int ordered_width[length];
     int total_movement = 0;
     int previous_position = drive_head;
     int min_index = 0;
@@ -115,17 +115,57 @@ void sstf_scheduling()
         min_seek = 10000;
         previous_position = min_cylinder;
     }
-    print_graph(sstf, total_movement);
+    print_graph(sstf, total_movement, length, schedule, ordered_width);
 }
 
-void scan_scheduling(){
+void scan_scheduling()
+{
 
-    for(int i=0; i<10; i++){
+    for (int i = 0; i < 10; i++)
+    {
         //wip
     }
 }
 
-void look_scheduling(){
+// void look_scheduling()
+// {
+//     int length = 10;
+//     int schedule[length] = {2055, 1175, 2304, 2700, 513, 1680, 256, 1401, 4922, 3692};
+//     int ordered_width[length] = {57, 27, 77, 87, 17, 47, 7, 37, 107, 97};
+//     int total_movement = 0;
+//     int previous_position = drive_head;
+//     int temp_q, temp_w;
 
-}
+//     for (size_t i = 1; i < length; i++)
+//     {
+//         int key = schedule[i];
+//         int w_key = ordered_width[i];
+//         int j = i - 1;
+//         while (j >= 0 && schedule[j] > key) // -- for non increasing order: a[j]<key
+//         {
+//             schedule[j + 1] = schedule[j];
+//             ordered_width[j + 1] = ordered_width[j];
+//             j -= 1;
+//         }
+//         schedule[j + 1] = key;
+//         ordered_width[j + 1] = key;
+//     }
+
+//     //sort whole array in ascending
+//     // for (int i = 0; i < n; i++)
+//     // {
+//     //     for (int j = i + 1; j < 6; j++)
+//     //     {
+//     //         if ((queue[i] < 2255) && (queue[i] < queue[j]))
+//     //         {
+//     //             temp = queue[i];
+//     //             queue[i] = queue[j];
+//     //             queue[j] = temp;
+//     //         }
+//     //     }
+//     //     schedule[i] = queue[i];
+//     // }
+//     print_graph(look, total_movement, length, schedule, ordered_width);
+// }
+
 #endif
