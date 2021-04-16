@@ -127,45 +127,54 @@ void scan_scheduling()
     }
 }
 
-// void look_scheduling()
-// {
-//     int length = 10;
-//     int schedule[length] = {2055, 1175, 2304, 2700, 513, 1680, 256, 1401, 4922, 3692};
-//     int ordered_width[length] = {57, 27, 77, 87, 17, 47, 7, 37, 107, 97};
-//     int total_movement = 0;
-//     int previous_position = drive_head;
-//     int temp_q, temp_w;
+void look_scheduling()
+{
+    int length = 11;
+    int schedule[11] = {0, 2055, 1175, 2304, 2700, 513, 1680, 256, 1401, 4922, 3692};
+    int ordered_width[11] = {1, 57, 27, 77, 87, 17, 47, 7, 37, 107, 97};
+    int total_movement = 0;
+    int previous_position = drive_head;
+    int temp_q, temp_w;
 
-//     for (size_t i = 1; i < length; i++)
-//     {
-//         int key = schedule[i];
-//         int w_key = ordered_width[i];
-//         int j = i - 1;
-//         while (j >= 0 && schedule[j] > key) // -- for non increasing order: a[j]<key
-//         {
-//             schedule[j + 1] = schedule[j];
-//             ordered_width[j + 1] = ordered_width[j];
-//             j -= 1;
-//         }
-//         schedule[j + 1] = key;
-//         ordered_width[j + 1] = key;
-//     }
+    // Sort array in ascending order
+    for (int i = 1; i < 11; i++)
+    {
+        int s_key = schedule[i];
+        int w_key = ordered_width[i];
+        int j = i - 1;
+        while (j >= 0 && schedule[j] > s_key) // -- for non increasing order: a[j]<key
+        {
+            schedule[j + 1] = schedule[j];
+            ordered_width[j + 1] = ordered_width[j];
+            j -= 1;
+        }
+        schedule[j + 1] = s_key;
+        ordered_width[j + 1] = w_key;
+    }
 
-//     //sort whole array in ascending
-//     // for (int i = 0; i < n; i++)
-//     // {
-//     //     for (int j = i + 1; j < 6; j++)
-//     //     {
-//     //         if ((queue[i] < 2255) && (queue[i] < queue[j]))
-//     //         {
-//     //             temp = queue[i];
-//     //             queue[i] = queue[j];
-//     //             queue[j] = temp;
-//     //         }
-//     //     }
-//     //     schedule[i] = queue[i];
-//     // }
-//     print_graph(look, total_movement, length, schedule, ordered_width);
-// }
+    // Sort left side of head in descending order
+    //  -- Find midpoint
+    int mid = 0;
+    while (schedule[mid] < drive_head)
+        mid++;
+
+    // Sort array in ascending order
+    for (int i = 1; i < mid; i++)
+    {
+        int s_key = schedule[i];
+        int w_key = ordered_width[i];
+        int j = i - 1;
+        while (j >= 0 && schedule[j] < s_key) // -- for non increasing order: a[j]<key
+        {
+            schedule[j + 1] = schedule[j];
+            ordered_width[j + 1] = ordered_width[j];
+            j -= 1;
+        }
+        schedule[j + 1] = s_key;
+        ordered_width[j + 1] = w_key;
+    }
+
+    print_graph(look, total_movement, length, schedule, ordered_width);
+}
 
 #endif
