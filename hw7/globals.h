@@ -166,6 +166,13 @@ void scan_scheduling()
         ordered_width[j + 1] = w_key;
     }
 
+    //calculate
+    for (int i = 0; i < length; i++)
+    {
+        total_movement = total_movement + abs(previous_position - schedule[i]);
+        previous_position = schedule[i];
+    }
+
     print_graph(scan, total_movement, length, schedule, ordered_width);
 }
 
@@ -231,7 +238,12 @@ void cscan_scheduling()
         schedule[j + 1] = s_key;
         ordered_width[j + 1] = w_key;
     }
-
+    // calculate total head movement
+    for (int i = 0; i < length; i++)
+    {
+        total_movement = total_movement + abs(previous_position - schedule[i]);
+        previous_position = schedule[i];
+    }
     print_graph(cscan, total_movement, length, schedule, ordered_width);
 }
 
@@ -281,7 +293,12 @@ void look_scheduling()
         schedule[j + 1] = s_key;
         ordered_width[j + 1] = w_key;
     }
-
+    // calculate total head movement
+    for (int i = 0; i < length; i++)
+    {
+        total_movement = total_movement + abs(previous_position - schedule[i]);
+        previous_position = schedule[i];
+    }
     print_graph(look, total_movement, length, schedule, ordered_width);
 }
 
@@ -347,7 +364,12 @@ void clook_scheduling()
         schedule[j + 1] = s_key;
         ordered_width[j + 1] = w_key;
     }
-
+    // calculate total head movement
+    for (int i = 0; i < length; i++)
+    {
+        total_movement = total_movement + abs(previous_position - schedule[i]);
+        previous_position = schedule[i];
+    }
     print_graph(clook, total_movement, length, schedule, ordered_width);
 }
 #endif
