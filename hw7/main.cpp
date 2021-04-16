@@ -2,7 +2,7 @@
 
 int main()
 {
-    fcfs_scheduling();
-    sstf_scheduling();
-    // look_scheduling();
+    // fcfs_scheduling();
+    // sstf_scheduling();
+    look_scheduling();
 }
