@@ -13,8 +13,9 @@ enum algorithm
     fcfs,
     sstf,
     scan,
-    look,
     cscan,
+    look,
+
     clook
 };
 string alg[] = {"First Come First Serve", "Shortest Seek Time First", "Scan", "Circular Scan", "Look", "Circular Look"};
@@ -120,15 +121,6 @@ void sstf_scheduling()
 
 void scan_scheduling()
 {
-
-    for (int i = 0; i < 10; i++)
-    {
-        //wip
-    }
-}
-
-void look_scheduling()
-{
     int length = 11;
     int schedule[11] = {0, 2055, 1175, 2304, 2700, 513, 1680, 256, 1401, 4922, 3692};
     int ordered_width[11] = {1, 57, 27, 77, 87, 17, 47, 7, 37, 107, 97};
@@ -174,7 +166,188 @@ void look_scheduling()
         ordered_width[j + 1] = w_key;
     }
 
+    print_graph(scan, total_movement, length, schedule, ordered_width);
+}
+
+void cscan_scheduling()
+{
+    int length = 12;
+    int schedule[12] = {0, 4999, 2055, 1175, 2304, 2700, 513, 1680, 256, 1401, 4922, 3692};
+    int ordered_width[12] = {1, 117, 57, 27, 77, 87, 17, 47, 7, 37, 107, 97};
+    int total_movement = 0;
+    int previous_position = drive_head;
+    int temp_q, temp_w;
+
+    // Sort array in ascending order
+    for (int i = 1; i < 12; i++)
+    {
+        int s_key = schedule[i];
+        int w_key = ordered_width[i];
+        int j = i - 1;
+        while (j >= 0 && schedule[j] > s_key) // -- for non increasing order: a[j]<key
+        {
+            schedule[j + 1] = schedule[j];
+            ordered_width[j + 1] = ordered_width[j];
+            j -= 1;
+        }
+        schedule[j + 1] = s_key;
+        ordered_width[j + 1] = w_key;
+    }
+
+    // Sort left side of head in descending order
+    //  -- Find midpoint
+    int mid = 0;
+    while (schedule[mid] < drive_head)
+        mid++;
+
+    // Sort array in ascending order
+    for (int i = 1; i < mid; i++)
+    {
+        int s_key = schedule[i];
+        int w_key = ordered_width[i];
+        int j = i - 1;
+        while (j >= 0 && schedule[j] < s_key) // -- for non increasing order: a[j]<key
+        {
+            schedule[j + 1] = schedule[j];
+            ordered_width[j + 1] = ordered_width[j];
+            j -= 1;
+        }
+        schedule[j + 1] = s_key;
+        ordered_width[j + 1] = w_key;
+    }
+
+    // Sort array in ascending order
+    for (int i = mid + 1; i < 12; i++)
+    {
+        int s_key = schedule[i];
+        int w_key = ordered_width[i];
+        int j = i - 1;
+        while (j >= mid && schedule[j] < s_key) // -- for non increasing order: a[j]<key
+        {
+            schedule[j + 1] = schedule[j];
+            ordered_width[j + 1] = ordered_width[j];
+            j -= 1;
+        }
+        schedule[j + 1] = s_key;
+        ordered_width[j + 1] = w_key;
+    }
+
+    print_graph(cscan, total_movement, length, schedule, ordered_width);
+}
+
+void look_scheduling()
+{
+    int length = 10;
+    int schedule[10] = {2055, 1175, 2304, 2700, 513, 1680, 256, 1401, 4922, 3692};
+    int ordered_width[10] = {57, 27, 77, 87, 17, 47, 7, 37, 107, 97};
+    int total_movement = 0;
+    int previous_position = drive_head;
+    int temp_q, temp_w;
+
+    // Sort array in ascending order
+    for (int i = 1; i < 10; i++)
+    {
+        int s_key = schedule[i];
+        int w_key = ordered_width[i];
+        int j = i - 1;
+        while (j >= 0 && schedule[j] > s_key) // -- for non increasing order: a[j]<key
+        {
+            schedule[j + 1] = schedule[j];
+            ordered_width[j + 1] = ordered_width[j];
+            j -= 1;
+        }
+        schedule[j + 1] = s_key;
+        ordered_width[j + 1] = w_key;
+    }
+
+    // Sort left side of head in descending order
+    //  -- Find midpoint
+    int mid = 0;
+    while (schedule[mid] < drive_head)
+        mid++;
+
+    // Sort array in ascending order
+    for (int i = 1; i < mid; i++)
+    {
+        int s_key = schedule[i];
+        int w_key = ordered_width[i];
+        int j = i - 1;
+        while (j >= 0 && schedule[j] < s_key) // -- for non increasing order: a[j]<key
+        {
+            schedule[j + 1] = schedule[j];
+            ordered_width[j + 1] = ordered_width[j];
+            j -= 1;
+        }
+        schedule[j + 1] = s_key;
+        ordered_width[j + 1] = w_key;
+    }
+
     print_graph(look, total_movement, length, schedule, ordered_width);
 }
 
+void clook_scheduling()
+{
+    int length = 10;
+    int schedule[10] = {2055, 1175, 2304, 2700, 513, 1680, 256, 1401, 4922, 3692};
+    int ordered_width[10] = {57, 27, 77, 87, 17, 47, 7, 37, 107, 97};
+    int total_movement = 0;
+    int previous_position = drive_head;
+    int temp_q, temp_w;
+
+    // Sort array in ascending order
+    for (int i = 1; i < 10; i++)
+    {
+        int s_key = schedule[i];
+        int w_key = ordered_width[i];
+        int j = i - 1;
+        while (j >= 0 && schedule[j] > s_key) // -- for non increasing order: a[j]<key
+        {
+            schedule[j + 1] = schedule[j];
+            ordered_width[j + 1] = ordered_width[j];
+            j -= 1;
+        }
+        schedule[j + 1] = s_key;
+        ordered_width[j + 1] = w_key;
+    }
+
+    // Sort left side of head in descending order
+    //  -- Find midpoint
+    int mid = 0;
+    while (schedule[mid] < drive_head)
+        mid++;
+
+    // Sort array in ascending order
+    for (int i = 1; i < mid; i++)
+    {
+        int s_key = schedule[i];
+        int w_key = ordered_width[i];
+        int j = i - 1;
+        while (j >= 0 && schedule[j] < s_key) // -- for non increasing order: a[j]<key
+        {
+            schedule[j + 1] = schedule[j];
+            ordered_width[j + 1] = ordered_width[j];
+            j -= 1;
+        }
+        schedule[j + 1] = s_key;
+        ordered_width[j + 1] = w_key;
+    }
+
+    // Sort array in ascending order
+    for (int i = mid + 1; i < 10; i++)
+    {
+        int s_key = schedule[i];
+        int w_key = ordered_width[i];
+        int j = i - 1;
+        while (j >= mid && schedule[j] < s_key) // -- for non increasing order: a[j]<key
+        {
+            schedule[j + 1] = schedule[j];
+            ordered_width[j + 1] = ordered_width[j];
+            j -= 1;
+        }
+        schedule[j + 1] = s_key;
+        ordered_width[j + 1] = w_key;
+    }
+
+    print_graph(clook, total_movement, length, schedule, ordered_width);
+}
 #endif
